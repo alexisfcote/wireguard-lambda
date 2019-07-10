@@ -125,3 +125,4 @@ dmypy.json
 
 credentials.csv
 .env
+.vscode
