@@ -2,12 +2,15 @@ import boto3
 from botocore.exceptions import ClientError
 import os
 import secrets
+import json
 from requests_dict import micro_spot_instance
 from time import sleep
 
-from dotenv import load_dotenv
-
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    pass
 
 REGION = "us-east-1"
 
@@ -55,7 +58,7 @@ class AwsManager:
                     sleep(1)
 
             instance = self.ec2ressource.Instance(instance_id)
-            instance.create_tags(Tags=[{'Key':'wire', 'Value':''}])
+            instance.create_tags(Tags=[{'Key':'wireguard', 'Value':''}])
 
         self.instance = instance
         return self.instance
@@ -99,11 +102,15 @@ class AwsManager:
         return False
 
 
-def main():
+def main(*args, **kwargs):
     aws = AwsManager()
     aws.start_instance()
     aws.link_public_address()
     print('Done')
+    return {
+        "statusCode": 200,
+        "body": json.dumps('Done')
+    }
 
 
 if __name__ == "__main__":

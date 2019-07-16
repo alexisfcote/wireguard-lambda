@@ -1,5 +1,4 @@
 micro_spot_instance = dict(
-    BlockDurationMinutes=120,
     InstanceCount=1,
     LaunchSpecification={
         "SecurityGroupIds": ["sg-0713f214c08f66a38"],
@@ -14,6 +13,7 @@ micro_spot_instance = dict(
                 },
             }
         ],
+        "KeyName": 'hadoop',
         "EbsOptimized": False,
         "ImageId": "ami-07ef9885657eb3222",
         "InstanceType": "t2.micro",
