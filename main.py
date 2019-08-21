@@ -86,7 +86,7 @@ class AwsManager:
             self.instance.load()
         
         response = self.ec2.describe_addresses(
-            Filters=[{"Name": "tag-key", "Values": ["wireshark"]}]
+            Filters=[{"Name": "tag-key", "Values": ["wireguard"]}]
         )
         addresses = response["Addresses"]
         if addresses:
